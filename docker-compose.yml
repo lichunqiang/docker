@@ -19,6 +19,8 @@ services:
             dockerfile: Dockerfile-yii
             args:
                 - PHP_VERSION=${PHP_VERSION}
+                - SOURCE_MIRROR=${SOURCE_MIRROR} 
+                - TZ=${TZ}
         restart: always
         networks:
             - web-network
@@ -35,6 +37,7 @@ services:
             context: ./mysql
             args:
                 - MYSQL_VERSION=${MYSQL_VERSION}
+                - TZ=${TZ}
         restart: always
         environment:
             - MYSQL_DATABASE=${MYSQL_DATABASE}
