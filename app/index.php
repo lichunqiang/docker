@@ -1,5 +1,8 @@
 <?php
 //phpinfo();
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+	require __DIR__ . '/vendor/autoload.php';
+}
 
 echo '<h1>MySQL</h1>';
 echo '<pre>';
@@ -41,3 +44,11 @@ if ($handle) {
 	echo $errno, ': ', $errstr;
 }
 echo '</pre>';
+
+if (class_exists('MongoDB\Client')) {
+	echo '<h1>Mongodb</h1>';
+	echo '<pre>';
+	$client = new MongoDB\Client("mongodb://mongodb:27017");
+	var_dump($client->listDatabases());
+	echo '</pre>';
+}

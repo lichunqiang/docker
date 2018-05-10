@@ -8,7 +8,6 @@ services:
         restart: always
         networks:
             - web-network
-
         volumes:
             - ${WWW_ROOT_LOCAL}:${WWW_ROOT_CONTAINER}
             - ./nginx/conf/sites:/etc/nginx/conf.d

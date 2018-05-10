@@ -1,0 +1,14 @@
+{
+    "name": "light/test-app",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lichunqiang",
+            "email": "light-li@hotmail.com"
+        }
+    ],
+    "require": {
+        "mongodb/mongodb": "^1.3"
+    }
+}
