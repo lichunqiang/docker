@@ -1,10 +1,13 @@
+#sys
+TZ=Asia/Shanghai
+
 DATA_DIR=/data
 
 WWW_ROOT_LOCAL=./app
 WWW_ROOT_CONTAINER=/usr/share/nginx/html
 
 #nginx
-NGINX_VERSION=latest 
+NGINX_VERSION=latest
 NGINX_PORT=80
 
 #php
@@ -23,5 +26,13 @@ MYSQL_PORT=3306
 REDIS_VERSION=latest
 REDIS_PORT=6379
 
-#sys
-TZ=Asia/Shanghai
+#beanstalkd
+BEANSTALKD_PORT=11300
+
+#elasticsearch
+ES_VERSION=6.2.3
+ES_PORT=9300
+
+#mongodb
+MONGO_VERSION=latest
+MONGO_PORT=27017

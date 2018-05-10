@@ -1,4 +1,4 @@
-<?php 
+<?php
 //phpinfo();
 
 echo '<h1>MySQL</h1>';
@@ -19,4 +19,25 @@ echo '</pre>';
 echo '<h1>PHP Extensions</h1>';
 echo '<pre>';
 var_export(get_loaded_extensions());
+echo '</pre>';
+
+echo '<h1>Beanstalkd</h1>';
+echo '<pre>';
+$handle = @fsockopen('beanstalkd', 11300, $errno, $errstr);
+stream_set_timeout($handle, 2, 0);
+if ($handle) {
+
+	fwrite($handle, 'stats' . "\r\n");
+
+	while (($buffer = fgets($handle, 4096)) !== false) {
+        echo $buffer;
+    }
+    if (!feof($handle)) {
+        echo "Error: unexpected fgets() fail\n";
+    }
+    fclose($handle);
+
+} else {
+	echo $errno, ': ', $errstr;
+}
 echo '</pre>';
