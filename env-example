@@ -1,10 +1,21 @@
-#sys
+### System ################################################
+
 TZ=Asia/Shanghai
 
-DATA_DIR=/data
+### Paths ################################################
+
+DATA_DIR=~/.phpdev/data
 
 WWW_ROOT_LOCAL=./app
 WWW_ROOT_CONTAINER=/usr/share/nginx/html
+
+### Drivers ################################################
+
+# All volumes driver
+VOLUMES_DRIVER=local
+
+# All Networks driver
+NETWORKS_DRIVER=bridge
 
 #nginx
 NGINX_VERSION=latest

@@ -1,5 +1,9 @@
 version: "3"
 
+networks:
+    web-network:
+        driver: ${NETWORKS_DRIVER}
+        
 services:
 ### Nginx ###########################################
     nginx:
@@ -34,6 +38,7 @@ services:
             - "${PHP_FPM_PORT}:9000"
         depends_on:
             - mysql
+            - beanstalkd
 ### MySQL ###########################################
     mysql:
         build:
@@ -67,6 +72,41 @@ services:
             - "${REDIS_PORT}:6379"
         networks:
             - web-network
-networks:
-    web-network:
-        driver: bridge
+### Beanstalkd ###########################################
+    beanstalkd:
+        build:
+            context: ./beanstalkd
+        restart: always
+        ports:
+            - "${BEANSTALKD_PORT}:11300"
+        networks:
+            - web-network
+### Elasticsearch ###########################################
+    elasticsearch:
+        build:
+            context: ./elasticsearch
+            args:
+                - ES_VERSION=${ES_VERSION}
+        restart: always
+        ports:
+            - "${ES_PORT}:9200"
+            - "${ES_PORT}:9300"
+        volumes:
+            - ${DATA_DIR}/es:/data
+        networks:
+            - web-network
+        environment:
+            - ES_JAVA_OPTS="-Xms16g -Xmx16g"
+### mongodb ###########################################
+    mongodb:
+        build:
+            context: ./mongo
+            args:
+                - MONGO_VERSION=${MONGO_VERSION}
+        restart: always
+        ports:
+            - "${MONGO_PORT}:27017"
+        volumes:
+            - ${DATA_DIR}/mongo:/data/db
+        networks:
+            - web-network
