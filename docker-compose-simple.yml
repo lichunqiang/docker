@@ -1,3 +1,5 @@
+version: "3"
+
 services:
 ### Nginx ###########################################
     nginx:
@@ -32,7 +34,6 @@ services:
             - "${PHP_FPM_PORT}:9000"
         depends_on:
             - mysql
-            - beanstalkd
 ### MySQL ###########################################
     mysql:
         build:
