@@ -1,4 +1,21 @@
-https://github.com/laradock/laradock
+基于 https://github.com/laradock/laradock 精简之后的Docker开发集成环境
+
+### env file
+
+查看完整compose.yml输出
+
+```bash
+$ docker compose config
+```
+
+> 默认使用同级目录下的 .env 文件
+
+可以使用一下方法修改读取文件:
+
+```
+$ docker compose --env-file ./config/.env.dev config
+```
+[ref](https://docs.docker.com/compose/environment-variables/set-environment-variables/)
 
 ### Notes
 
